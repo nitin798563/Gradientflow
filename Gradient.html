@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Gradient Flow</title>
+   <style>
+    #mybtn1{
+        background-color: rgb(233, 240, 238);
+        color: #050505;
+    }
+    #mybtn2{
+        background-color: rgb(215, 214, 230);
+        color: #050505;
+    }
+   .copycode{
+    display: flex;
+    align-items:center;
+    justify-content:start;
+    font-size: 1.8rem;
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+    border-left: 3px solid #fff;
+    background-color: rgba(189,189,189,0.1);
+    padding: 15px 8px 15px 17px;
+    border-radius: 5px;
+   }
+   body{
+    height: 100vh;
+    background-image: linear-gradient(
+        to right top,
+        #051937,
+        #657894,
+        #887890,
+        #78a78b,
+        #56ac53,
+        #1256ac
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3.2rem;
+   }
+    </style>
+</head>
+<body>
+    <section>
+        <div >
+            <button id="mybtn1">#051937</button>
+        </div>
+       <div>
+            <button id="mybtn2">#008793</button>
+        </div>
+        <h2>Copy the colour</h2>
+        👇
+        <div class="copycode">
+            background-image: 
+            linear-gradient(to right,#051937 ,#008793 )
+        </div>
+    </section>
+
+    <script>
+        let btn1 = document.getElementById("mybtn1")
+        let btn2 = document.getElementById("mybtn2")
+        let copydiv = document.querySelector(".copycode")
+
+        const myhexvalues = () => {
+            let hexavalues = '0123456789abcdef'
+            let colors = "#"
+            for(let i=0; i<6; i++){
+                colors = colors + hexavalues[Math.floor(Math.random()*16)]
+               
+            }
+            return colors
+        }
+
+        const handlebutton1 = () => {
+            rgb1 = myhexvalues();
+            console.log(rgb1)
+            mybtn1.innerText = rgb1
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1},${rgb2})`
+            copydiv.innerHTML =  `background-image: linear-gradient(to right, ${rgb1},${rgb2})`
+
+        }
+
+        const handlebutton2 = () => {
+            rgb2 = myhexvalues();
+            console.log(rgb2)
+            mybtn2.innerText = rgb2
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1},${rgb2})`
+            copydiv.innerHTML =  `background-image: linear-gradient(to right, ${rgb1},${rgb2})`
+
+        }
+
+        btn1.addEventListener('click',handlebutton1)
+        btn2.addEventListener('click',handlebutton2)
+
+        copydiv.addEventListener("click", () => {
+           navigator.clipboard.writeText(copydiv.innerText); 
+        })
+       
+    </script>
+
+</body>
+</html>
